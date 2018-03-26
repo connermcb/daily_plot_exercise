@@ -1,0 +1,96 @@
+---
+title: "Untitled"
+author: "C. McBride"
+date: "March 22, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r warning=FALSE,message=FALSE}
+library(ggplot2)
+library(readr)
+library(lubridate)
+library(dplyr)
+```
+
+```{r message=FALSE, warning=FALSE}
+setwd("../../conner/daily_plots/")
+
+ice_df <- read_csv("sea_ice/N_seaice_extent_daily_v3.0.csv")
+```
+
+```{r}
+## format and clean data
+
+# modify variable class
+ice_df$Extent <- as.numeric(ice_df$Extent)
+
+# remove irrelevant variables
+ice_df <- ice_df[2:nrow(ice_df), -c(5, 6)]
+
+# remove partial year 1978, partial data
+ice_df <- subset(ice_df, Year != "1978")
+
+# subset for winter months
+ice_df <- subset(ice_df, Month %in% c("01", "02", "03", "04", "05"))
+
+# lower case variable names
+names(ice_df) <- tolower(names(ice_df))
+
+```
+
+```{r}
+## format month/day dates for plotting years in same plot frame
+
+# combine month and day into string 
+full_dates <- with(ice_df, paste0(month, "/", day, "/", year))
+full_dates <- mdy(full_dates)
+mnth_day <- format(full_dates, format="%m-%d")
+
+# add month/day to df
+ice_df <- cbind(ice_df, mnth_day)
+
+# add mean extension of ice by year
+ice_df$annual_mean <- ave(ice_df$extent, ice_df$year)
+
+# get max extension of ice by year
+maxes <- ice_df %>%
+         group_by(year) %>%
+         slice(which.max(extent))
+         
+```
+
+
+
+```{r}
+ggplot()+
+  geom_line(data=subset(ice_df, year != "2018"),
+            aes(x=mnth_day, y=extent, color=annual_mean, group=year), 
+            size=1, show.legend = TRUE) +
+  geom_line(data=subset(ice_df, year == "2018"), 
+            aes(x=mnth_day, y=extent, group=year), 
+            size=1.25, color="black", lineend="square", 
+            show.legend = TRUE) +
+  scale_color_distiller(palette = "Oranges", guide="colourbar") +
+  geom_point(data=maxes, aes(x=mnth_day, y=extent, color=annual_mean),
+             size= 2) +
+  labs(title="Extent of Artic Winter Sea Ice by Year",
+       y="Millions of Square Kilometers",
+       x="") +
+  scale_x_discrete(breaks=c("01-01", "02-01", "03-01", "04-01", "05-01", "05-30"),
+                   labels=c("Jan", "Feb", "Mar", "Apr", "May", "June"))+
+  scale_y_continuous(breaks=c(12, 14, 16)) +
+  theme(plot.title = element_text(hjust = 0.5),
+        plot.background = element_blank(),
+        panel.background = element_blank(),
+        panel.grid = element_blank(), 
+        legend.direction = "horizontal",
+        legend.position = c(0.4, 0.2),
+        legend.title.align = 0.5)
+
+```
+
