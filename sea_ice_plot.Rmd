@@ -22,7 +22,7 @@ setwd("../../conner/daily_plots/")
 ice_df <- read_csv("sea_ice/N_seaice_extent_daily_v3.0.csv")
 ```
 
-```{r}
+```{r warning=FALSE}
 ## format and clean data
 
 # modify variable class
@@ -62,8 +62,8 @@ maxes <- ice_df %>%
 
 ```{r}
 # define color palette
-brks <- seq(from=98, to=25, length.out = 40)
-palt <- sapply(t, function(x) hcl(h=0, c=0, l=x))
+brks <- seq(from=90, to=40, length.out = 40)
+palt <- sapply(brks, function(x){hcl(h=180, c=0, l=x)})
 
 ```
 
