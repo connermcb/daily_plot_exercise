@@ -99,7 +99,7 @@ ggplot()+
   
   # max value background
   geom_point(data=maxes, aes(x=mnth_day, y=Extent),
-             color="grey50", size= 3) +
+             color="grey20", size= 3) +
   
   # max value foreground
   geom_point(data=maxes, aes(x=mnth_day, y=Extent, color=Year),
