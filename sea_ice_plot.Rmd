@@ -1,5 +1,6 @@
 ---
 title: "Plot of Winter Arctic Sea Ice"
+author: "Conner McBride"
 date: "March 26, 2018"
 output: html_document
 ---
