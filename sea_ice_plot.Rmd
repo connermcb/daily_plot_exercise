@@ -9,6 +9,16 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 
+### Background
+
+This plot is my rendition of a [beautiful line graph](https://www.nytimes.com/interactive/2018/03/23/climate/arctic-ice-maximum.html) published on March 3, 2018 in the New York Times that accompanied an article by KENDRA PIERRE-LOUIS, NADJA POPOVICH and ADAM PEARCE on decreases in arctic sea ice. My plot is an exercise in trying to produce similar results.
+
+The plot is built with ggplot2 in RStudio.
+
+### The Data
+
+The dataset is documented and available from the [National Snow & Ice Data Center](https://nsidc.org/data/search/#keywords=sea+ice/sortKeys=score,,desc/facetFilters=%257B%257D/pageNumber=1/itemsPerPage=25) with compressed csv files for download at a [linked FTP server](ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/). 
+
 ```{r warning=FALSE,message=FALSE}
 library(ggplot2)
 library(readr)
@@ -69,25 +79,42 @@ palt <- sapply(brks, function(x){hcl(h=180, c=0, l=x)})
 
 
 ```{r, fig.align="center", fig.height=5, fig.width=8}
+# plot of sea ice extent
 ggplot()+
+  
+  # line plot of all year except 2018
   geom_line(data=subset(ice_df, Year != "2018"),
             aes(x=mnth_day, y=Extent, color=Year, group=Year), 
             size=1, show.legend = TRUE) +
+  
+  # line plot of only 2018
   geom_line(data=subset(ice_df, Year == "2018"), 
             aes(x=mnth_day, y=Extent, group=Year), 
             size=1.25, color="black", lineend="square", 
             show.legend = FALSE) +
+  
+  # color scale using custom palette
   scale_color_manual(values=palt, guide=FALSE) +
+  
+  # max value background
   geom_point(data=maxes, aes(x=mnth_day, y=Extent),
              color="grey50", size= 3) +
+  
+  # max value foreground
   geom_point(data=maxes, aes(x=mnth_day, y=Extent, color=Year),
              size= 2) +
+  
+  # max value 2018
   geom_point(data=subset(maxes, Year==2018),
              aes(x=mnth_day, y=Extent),
              color="black", size= 2) +
+  
+  # labels for 2018, 1979
   geom_text(data=subset(maxes, Year %in% c("1979", "2018")),
             aes(x=mnth_day, y=Extent, label=Year),
             nudge_x = 3.5, nudge_y = 0.175)+
+  
+  # Formatting
   labs(title="Extent of Artic Winter Sea Ice by Year",
        y="Millions of Square Kilometers",
        x="") +
