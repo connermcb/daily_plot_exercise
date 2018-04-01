@@ -79,6 +79,16 @@ ui <- fluidPage(
    # Sidebar with a slider input for number of bins 
    sidebarLayout(
       sidebarPanel(
+        
+        selectInput("state_adjust",
+                    "Select State",
+                    choices = state.name[!(state.name %in% 
+                                             c("Alaska", "Hawaii"))],
+                    selected = "California",
+                    multiple = TRUE
+                   ),
+      
+      
          selectInput("year_adjust",
                      "Select Year",
                      choices = 2008:2018, 
@@ -86,22 +96,24 @@ ui <- fluidPage(
                      multiple = FALSE,
                      selectize = TRUE, 
                      width = NULL, 
-                     size = NULL),
+                     size = NULL
+                     ),
          
-         selectizeInput("state_adjust",
-                        "Select State",
-                        choices = state.name[!(state.name %in% 
-                                              c("Alaska", "Hawaii"))]),
-                        selected = "California",
-                        multiple = TRUE
+         selectInput("month_adjust",
+                     "Select Month",
+                     choices = month.name,
+                     selected = NULL,
+                     multiple = FALSE
+                     )
+                     
+        
       ),
-      
       # Show a plot of the generated distribution
       mainPanel(
          plotOutput("distPlot")
       )
-   )
-)
+   ))
+
 
 # Define server logic required to draw a histogram
 server <- function(input, output) {
@@ -125,10 +137,9 @@ server <- function(input, output) {
                                   minlongitude = w_e[[1]], maxlongitude = w_e[[2]],
                                   minmagnitude = 2.5, maxmagnitude = 10)
      quake_data <- read_csv(data_url)
-    View(quake_data)
+
      quake_data2 <- test_pnt_in_ploy(base_map, quake_data)
-    View(quake_data2)
-     View(all.equal(quake_data, quake_data2))
+
      
       # create plot
       ggplot() +
@@ -146,7 +157,7 @@ server <- function(input, output) {
                                                       barheight = 10,
                                                       title.position = "left",
                                                       label.vjust = 0.5)) +
-        ggtitle(input$year_adjust) +
+        ggtitle(paste(input$state_adjust, "-", input$year_adjust)) +
         # labs(caption = paste("Total Number of Earthquakes =",
         #                      quake_data$cnt)) +
         coord_map() +
