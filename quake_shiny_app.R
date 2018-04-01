@@ -97,14 +97,8 @@ ui <- fluidPage(
                      selectize = TRUE, 
                      width = NULL, 
                      size = NULL
-                     ),
-         
-         selectInput("month_adjust",
-                     "Select Month",
-                     choices = month.name,
-                     selected = NULL,
-                     multiple = FALSE
                      )
+        
                      
         
       ),
@@ -138,15 +132,18 @@ server <- function(input, output) {
                                   minmagnitude = 2.5, maxmagnitude = 10)
      quake_data <- read_csv(data_url)
 
-     quake_data2 <- test_pnt_in_ploy(base_map, quake_data)
+     quake_data <- test_pnt_in_ploy(base_map, quake_data)
 
+     quake_data <- quake_data %>%
+                   arrange(mag)
+     
      
       # create plot
       ggplot() +
         geom_polygon(data=base_map,
                      aes(x=long, y=lat, group=group),
                      color="black", fill = "grey90", size = 1.5) +
-        geom_point(data=quake_data2,
+        geom_point(data=quake_data,
                    aes(x=longitude, y=latitude, color=mag),
                    alpha=0.8, size=4, shape=17) +
         scale_color_continuous(name="Earthquake \nMagnitude",
