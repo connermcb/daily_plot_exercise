@@ -17,7 +17,7 @@ library(lubridate)
 library(shiny)
 library(sp)
 library(maptools)
-library(ptinpoly)
+library(SDMTools)
 
 get_quake_data <- function(output_format="csv",
                            starttime=today()-180,
@@ -58,10 +58,11 @@ test_pnt_in_ploy <- function(map_poly, pnt_df){
 
   test_poly <- as.matrix(map_poly[ , 1:2])
   test_coords <- as.matrix(pnt_df[, c("longitude", "latitude")])
-  View(class(test_coords))
-  idxs <- pip2d(test_poly, test_coords)
-  View(idxs)
+
+  idxs <- pnt.in.poly(test_coords, test_poly)[ , "pip"]
+
   new_df <- pnt_df[idxs, ]
+
   return(new_df)
 }
 
@@ -119,20 +120,19 @@ server <- function(input, output) {
      end_time <- as.Date(paste(input$year_adjust, "12/31", sep = "/"))
      data_url <-   get_quake_data(starttime = strt_time, 
                                   endtime = min(today(), end_time),
-                                  minlatitude = s_n[1], maxlatitude = s_n[2],
-                                  minlongitude = w_e[1], maxlongitude = w_e[2],
+                                  minlatitude = s_n[[1]], maxlatitude = s_n[[2]],
+                                  minlongitude = w_e[[1]], maxlongitude = w_e[[2]],
                                   minmagnitude = 2.5, maxmagnitude = 10)
      quake_data <- read_csv(data_url)
 
      quake_data2 <- test_pnt_in_ploy(base_map, quake_data)
-     
 
       # create plot
       ggplot() +
         geom_polygon(data=base_map,
                      aes(x=long, y=lat, group=group),
                      color="black", fill = "grey90", size = 1.5) +
-        geom_point(data=quake_data,
+        geom_point(data=quake_data2,
                    aes(x=longitude, y=latitude, color=mag),
                    alpha=0.8, size=4, shape=17) +
         scale_color_continuous(name="Earthquake \nMagnitude",
@@ -153,7 +153,7 @@ server <- function(input, output) {
               legend.position = c(-0.25,-0.25),
               legend.text = element_text(size=12),
               legend.title = element_text(size=12))
-    
+
         })
 }
 
