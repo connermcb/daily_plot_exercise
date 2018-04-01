@@ -145,7 +145,7 @@ server <- function(input, output) {
                      color="black", fill = "grey90", size = 1.5) +
         geom_point(data=quake_data,
                    aes(x=longitude, y=latitude, color=mag),
-                   alpha=0.8, size=4, shape=17) +
+                   alpha=1, size=4, shape=17) +
         scale_color_continuous(name="Earthquake \nMagnitude",
                                high = "yellow", low = "blue",
                                limits = c(2.5, 5.5),
