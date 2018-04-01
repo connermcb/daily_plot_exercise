@@ -1,0 +1,102 @@
+---
+title: "Oklahoma Earthquakes 2008-2018"
+author: "C. McBride"
+date: "March 28, 2018"
+output: html_document
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r message=FALSE, warning=FALSE}
+library(ggplot2)
+library(readr)
+library(dplyr)
+library(maps)
+library(ggmap)
+library(gridExtra)
+library(cowplot)
+library(lubridate)
+library(shiny)
+library(sp)
+library(maptools)
+```
+
+```{r message=FALSE, warning=FALSE}
+# load dataset
+setwd("c:/users/conner/daily_plots/")
+quakes <- read_csv("oklahoma_quakes/oklahoma_quakes.csv")
+
+quakes_copy <- as.data.frame(quakes)
+base_map <- map("state", regions = "oklahoma", fill = TRUE)
+state_shp <- map2SpatialPolygons(base_map, IDs = base_map$names, 
+                                 proj4string = CRS("+proj=longlat"))
+
+coordinates(quakes_copy) <- ~longitude + latitude
+proj4string(quakes_copy) <- CRS("+proj=longlat")
+in_poly <- over(quakes_copy, state_shp)
+in_poly[is.na(in_poly)] <- 0
+quakes <- quakes[in_poly, ]
+quakes$ptin <- pip2d(base_map2, cbind(quakes$longitude, quakes$latitude)) + 1
+```
+
+```{r}
+# add year variable
+quakes <- quakes %>%
+          mutate(yr = year(as.Date(as.character(time))))
+
+quakes <- quakes %>%
+          group_by(yr) %>%
+          mutate(cnt = n())
+          
+```
+
+
+```{r eruptions, echo=FALSE}
+shinyUI(pageWithSidebar(
+  
+  # application title
+  titlePanel = "Oklahoma Earthquakes 2008-2018",
+  
+  sidebarPanel(
+    selectInput("year_adjust", label="Select Year", 
+                choices=2008:2018, selected = NULL, multiple = FALSE,
+                selectize = TRUE, width = NULL, size = NULL)
+  ),
+  mainPanel(plotOutput("ok_quakes"))
+))
+  
+
+shinyServer(function(input, output) {
+  
+  temp_quakes <- reactive(function(){
+    subset(quakes, yr==input$year_adjust)
+    }) 
+  
+  output$ok_quakes <- renderPlot({
+    plot(rnorm(10))
+    # get base map
+    base_map2 <- map_data("state", region = "oklahoma")
+
+    # create plot
+    ggplot() +
+      geom_polygon(data=base_map2, aes(x=long, y=lat, group=group),
+                   color="black", fill = "grey90", size = 1.5) +
+      geom_point(data=temp_quakes, aes(x=longitude, y=latitude, size=mag*10+1.5),
+                 color="grey25", alpha=0.3, show.legend = F) +
+      geom_point(data=temp_quakes, aes(x=longitude, y=latitude, size=mag*100000,
+                                  color=mag), alpha=0.3, show.legend = F) +
+      ggtitle(as.character(input$year_adjust),
+              paste(Total Number of Earthquakes =, )) +
+      coord_map() +
+      theme_void() +
+      theme(plot.title = element_text(hjust = 0.5, size = 26))
+
+  
+  })
+})
+
+```
+
