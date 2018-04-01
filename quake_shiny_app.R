@@ -60,6 +60,7 @@ test_pnt_in_ploy <- function(map_poly, pnt_df){
   test_coords <- as.matrix(pnt_df[, c("longitude", "latitude")])
 
   idxs <- pnt.in.poly(test_coords, test_poly)[ , "pip"]
+  idxs <- as.logical(idxs)
 
   new_df <- pnt_df[idxs, ]
 
@@ -124,9 +125,11 @@ server <- function(input, output) {
                                   minlongitude = w_e[[1]], maxlongitude = w_e[[2]],
                                   minmagnitude = 2.5, maxmagnitude = 10)
      quake_data <- read_csv(data_url)
-
+    View(quake_data)
      quake_data2 <- test_pnt_in_ploy(base_map, quake_data)
-
+    View(quake_data2)
+     View(all.equal(quake_data, quake_data2))
+     
       # create plot
       ggplot() +
         geom_polygon(data=base_map,
