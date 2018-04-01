@@ -91,7 +91,7 @@ ui <- fluidPage(
       
          selectInput("year_adjust",
                      "Select Year",
-                     choices = 2008:2018, 
+                     choices = 1968:2018, 
                      selected = NULL, 
                      multiple = FALSE,
                      selectize = TRUE, 
