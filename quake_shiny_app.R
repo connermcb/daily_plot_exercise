@@ -115,7 +115,6 @@ server <- function(input, output) {
      s_n <- range(base_map$lat)
      
      # scrape USGS data
-     source("C:\\Users\\conner\\daily_plots\\us_quakes_data\\searchComcat.R")
      strt_time <- as.Date(paste(input$year_adjust, "01/01", sep = "/"))
      end_time <- as.Date(paste(input$year_adjust, "12/31", sep = "/"))
      data_url <-   get_quake_data(starttime = strt_time, 
@@ -127,37 +126,35 @@ server <- function(input, output) {
 
      quake_data2 <- test_pnt_in_ploy(base_map, quake_data)
      
-  # get base map
-  base_map <- map_data("state", region = input$state_adjust)
 
-  # create plot
-  ggplot() +
-    geom_polygon(data=base_map,
-                 aes(x=long, y=lat, group=group),
-                 color="black", fill = "grey90", size = 1.5) +
-    geom_point(data=quake_data,
-               aes(x=longitude, y=latitude, color=mag),
-               alpha=0.8, size=4, shape=17) +
-    scale_color_continuous(name="Earthquake \nMagnitude",
-                           high = "yellow", low = "blue",
-                           limits = c(2.5, 5.5),
-                           breaks = seq(from=2.5, to=5.5, by=1),
-                           guide = guide_colorbar(barwidth = 1,
-                                                  barheight = 10,
-                                                  title.position = "left",
-                                                  label.vjust = 0.5)) +
-    ggtitle(input$year_adjust) +
-    # labs(caption = paste("Total Number of Earthquakes =",
-    #                      quake_data$cnt)) +
-    coord_map() +
-    theme_void() +
-    theme(plot.title = element_text(hjust = 0.5, size = 26),
-          plot.caption = element_text(hjust = 0, size=14),
-          legend.position = c(-0.25,-0.25),
-          legend.text = element_text(size=12),
-          legend.title = element_text(size=12))
-
-    })
+      # create plot
+      ggplot() +
+        geom_polygon(data=base_map,
+                     aes(x=long, y=lat, group=group),
+                     color="black", fill = "grey90", size = 1.5) +
+        geom_point(data=quake_data,
+                   aes(x=longitude, y=latitude, color=mag),
+                   alpha=0.8, size=4, shape=17) +
+        scale_color_continuous(name="Earthquake \nMagnitude",
+                               high = "yellow", low = "blue",
+                               limits = c(2.5, 5.5),
+                               breaks = seq(from=2.5, to=5.5, by=1),
+                               guide = guide_colorbar(barwidth = 1,
+                                                      barheight = 10,
+                                                      title.position = "left",
+                                                      label.vjust = 0.5)) +
+        ggtitle(input$year_adjust) +
+        # labs(caption = paste("Total Number of Earthquakes =",
+        #                      quake_data$cnt)) +
+        coord_map() +
+        theme_void() +
+        theme(plot.title = element_text(hjust = 0.5, size = 26),
+              plot.caption = element_text(hjust = 0, size=14),
+              legend.position = c(-0.25,-0.25),
+              legend.text = element_text(size=12),
+              legend.title = element_text(size=12))
+    
+        })
 }
 
 # Run the application 
