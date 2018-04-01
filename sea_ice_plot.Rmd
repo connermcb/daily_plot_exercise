@@ -86,13 +86,12 @@ ggplot()+
   # line plot of all year except 2018
   geom_line(data=subset(ice_df, Year != "2018"),
             aes(x=mnth_day, y=Extent, color=Year, group=Year), 
-            size=1, show.legend = TRUE) +
+            size=1) +
   
   # line plot of only 2018
   geom_line(data=subset(ice_df, Year == "2018"), 
             aes(x=mnth_day, y=Extent, group=Year), 
-            size=1.25, color="black", lineend="square", 
-            show.legend = FALSE) +
+            size=1.25, color="black", lineend="square") +
   
   # color scale using custom palette
   scale_color_manual(values=palt, guide=FALSE) +
