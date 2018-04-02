@@ -105,16 +105,16 @@ ui <- fluidPage(
       ),
       # Show a plot of the generated distribution
       mainPanel(
-         plotOutput("quake_plot")
+         plotlyOutput("quake_plot")
       )
    ))
 
 
 # Define server logic required to draw a histogram
-server <- function(input, output) {
+server <- shinyServer(function(input, output) {
   
    
-   output$quake_plot <- renderPlot({
+   output$quake_plot <- renderPlotly({
      
      # get base-map with UI input
      base_map <- map_data("state", regions = tolower(input$state_adjust))
@@ -144,9 +144,11 @@ server <- function(input, output) {
         geom_polygon(data=base_map,
                      aes(x=long, y=lat, group=group),
                      color="black", fill = "grey90", size = 1.5) +
+      
         geom_point(data=quake_data,
                    aes(x=longitude, y=latitude, color=mag),
                    alpha=1, size=4, shape=17) +
+      
         scale_color_continuous(name="Earthquake \nMagnitude",
                                high = "yellow", low = "blue",
                                limits = c(2.5, 5.5),
@@ -155,21 +157,23 @@ server <- function(input, output) {
                                                       barheight = 10,
                                                       title.position = "left",
                                                       label.vjust = 0.5)) +
-        ggtitle(paste(input$state_adjust, "-", input$year_adjust)) +
+      
+      ggtitle(paste(input$state_adjust, "-", input$year_adjust)) +
         # labs(caption = paste("Total Number of Earthquakes =",
-        #                      quake_data$cnt)) +
-        coord_map() +
-        theme_void() +
-        theme(plot.title = element_text(hjust = 0.5, size = 26),
-              plot.caption = element_text(hjust = 0, size=14),
-              legend.position = c(-0.25,-0.25),
-              legend.text = element_text(size=12),
-              legend.title = element_text(size=12))
+        #                      quake_data$cnt)) 
+      coord_map() +
         
-       p  
+      theme_void() +
+      theme(plot.title = element_text(hjust = 0.5, size = 26),
+                  plot.caption = element_text(hjust = 0, size=14),
+                  legend.position = c(-0.25,-0.25),
+                  legend.text = element_text(size=12),
+                  legend.title = element_text(size=12))
+        
+      ggplotly(p)
       
         })
-}
+})
 
 # Run the application 
 shinyApp(ui = ui, server = server)
