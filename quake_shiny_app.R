@@ -18,6 +18,7 @@ library(shiny)
 library(sp)
 library(maptools)
 library(SDMTools)
+library(plotly)
 
 get_quake_data <- function(output_format="csv",
                            starttime=today()-180,
@@ -104,7 +105,7 @@ ui <- fluidPage(
       ),
       # Show a plot of the generated distribution
       mainPanel(
-         plotOutput("distPlot")
+         plotOutput("quake_plot")
       )
    ))
 
@@ -113,7 +114,7 @@ ui <- fluidPage(
 server <- function(input, output) {
   
    
-   output$distPlot <- renderPlot({
+   output$quake_plot <- renderPlot({
      
      # get base-map with UI input
      base_map <- map_data("state", regions = tolower(input$state_adjust))
@@ -139,7 +140,7 @@ server <- function(input, output) {
      
      
       # create plot
-      ggplot() +
+      p <- ggplot() +
         geom_polygon(data=base_map,
                      aes(x=long, y=lat, group=group),
                      color="black", fill = "grey90", size = 1.5) +
@@ -164,7 +165,9 @@ server <- function(input, output) {
               legend.position = c(-0.25,-0.25),
               legend.text = element_text(size=12),
               legend.title = element_text(size=12))
-
+        
+       p  
+      
         })
 }
 
