@@ -87,7 +87,7 @@ ui <- fluidPage(
                     choices = state.name[!(state.name %in% 
                                              c("Alaska", "Hawaii"))],
                     selected = "California",
-                    multiple = TRUE
+                    multiple = FALSE
                    ),
       
       
@@ -158,11 +158,11 @@ server <- shinyServer(function(input, output) {
 
         scale_color_continuous(name="Earthquake \nMagnitude",
                                high = "yellow", low = "blue",
-                               limits = c(2.5, 5.5),
-                               breaks = seq(from=2.5, to=5.5, by=1),
+                               limits = c(2.5, 9.5),
+                               breaks = seq(from=2.5, to=9.5, by=1),
                                guide = guide_colorbar(barwidth = 1,
                                                       barheight = 10,
-                                                      title.position = "left",
+                                                      title.position = "top",
                                                       label.vjust = 0.5)) +
 
       ggtitle(paste(input$state_adjust, "-", input$year_adjust)) +
@@ -171,9 +171,9 @@ server <- shinyServer(function(input, output) {
       coord_map() +
 
       theme_void() +
-      theme(plot.title = element_text(hjust = 0.5, size = 26),
+      theme(plot.title = element_text(hjust = 0.5, vjust = 1, size = 26),
                   plot.caption = element_text(hjust = 0, size=14),
-                  legend.position = c(-0.25,-0.25),
+                  legend.position = "right",
                   legend.text = element_text(size=12),
                   legend.title = element_text(size=12))
 
