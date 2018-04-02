@@ -146,7 +146,13 @@ server <- shinyServer(function(input, output) {
                      color="black", fill = "grey90", size = 1.5) +
       
         geom_point(data=quake_data,
-                   aes(x=longitude, y=latitude, color=mag),
+                   aes(x=longitude, y=latitude, color=mag, 
+                       text=paste0("M ", mag, " - ", place,
+                                  "\nTime: ", time, 
+                                  "\nLocation: ", round(latitude, 3), " N, ",
+                                                  round(longitude, 3)*-1, " W",
+                                  "\nDepth: ", depth, " km"
+                                  )),
                    alpha=1, size=4, shape=17) +
       
         scale_color_continuous(name="Earthquake \nMagnitude",
@@ -170,7 +176,7 @@ server <- shinyServer(function(input, output) {
                   legend.text = element_text(size=12),
                   legend.title = element_text(size=12))
         
-      ggplotly(p)
+      ggplotly(p, tooltip="text")
       
         })
 })
