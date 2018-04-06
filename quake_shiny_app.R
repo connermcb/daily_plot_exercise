@@ -167,8 +167,8 @@ server <- shinyServer(function(input, output) {
                                                       label.vjust = 0.5)) +
                 
                 ggtitle(paste(input$state_adjust, "-", input$year_adjust)) +
-                # labs(caption = paste("Total Number of Earthquakes =",
-                #                      quake_data$cnt))
+                labs(caption = paste("Total Number of Earthquakes =",
+                                     nrow(quake_data))) + 
                 coord_map() +
                 
                 theme_void() +
