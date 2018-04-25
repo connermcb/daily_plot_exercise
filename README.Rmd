@@ -1,0 +1,18 @@
+---
+title: "(Almost) Daily Plots"
+author: "C. McBride"
+date: "April 24, 2018"
+output: html_document
+---
+
+## About
+
+This repo is a simple container for my practice plots. I work with _ggplot_, _matplotlib_, and _Tableau_ primarily to build attractive visualizations. The goal is to build a plot a day and add it to this container. As the title notes, I don't to adding a plot quite everyday...
+
+## The Plots
+
+**Plot 1 - April 9, 2018**
+
+This plot from a walk-through by Ben Jones in his book _Communicating Data with Tableau_. The full interactive dashboard can be experience [here](https://public.tableau.com/profile/conner.mcbride#!/vizhome/presidents_timeline/Dashboard1?publish=yes). A snapshot of the dashboard:
+
+![](presidents_timeline.png)
