@@ -1,11 +1,14 @@
 ---
 title: "(Almost) Daily Plots"
 author: "Conner McBride"
-output: html_document
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, input="README.rmd", output = "README.md")
+knitr::opts_chunk$set(echo = FALSE, 
+                      collapse = TRUE,
+                      comment = "#>",
+                      fig.path = "README-")
 ```
 
 ## About
