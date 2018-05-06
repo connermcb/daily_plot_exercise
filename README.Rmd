@@ -19,7 +19,11 @@ This repo is a simple container for my practice plots. I work with _ggplot_, _ma
 
 **Plot 4 - May 5, 2018**
 
-This visualization looks at some key performance stats for some of the biggest and most well-known teams in professional hockey. It's also an exploration of slope charts and their implementation in Tableau as well as adding images to the hover tool window. The full dashboard can be experienced [here](https://public.tableau.com/profile/conner.mcbride#!/vizhome/NHLHockeyStatsSlopeChart/Dashboard1?publish=yes).And a snapshot:
+This visualization looks at some key performance stats for some of the biggest and most well-known teams in professional hockey. 
+
+Data: www.sports-reference.com. Use agreement: https://www.sports-reference.com/termsofuse.html
+
+It's also an exploration of slope charts and their implementation in Tableau as well as adding images to the hover tool window. The full dashboard can be experienced [here](https://public.tableau.com/profile/conner.mcbride#!/vizhome/NHLHockeyStatsSlopeChart/Dashboard1?publish=yes).And a snapshot:
 
 ![](NHL_viz.png)
 
