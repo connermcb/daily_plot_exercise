@@ -16,8 +16,26 @@ knitr::opts_chunk$set(echo = FALSE,
 This repo is a simple container for my practice plots. I work with _ggplot_, _matplotlib_, and _Tableau_ primarily to build attractive visualizations. The goal is to build a plot a day and add it to this container. As the title notes, I don't to adding a plot quite everyday...
 
 ## The Plots
+**Plot 6 - May 18, 2018**
+A simple visualization using the [`elliplot` package](https://github.com/cran/elliplot) by Shinichiro Tomizono.The `ellipseplot` function that produces a correlation chart and visualizes the effect of factors on the relationship between the two principal variables. This plot is to test the capabilities of the function and is not optimized in terms of formatting.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
+### Daily Plot for May 18, 2018 ###
+
+# get packages
+library(elliplot)
+
+# load data
+bb <- read.csv("baseball/baseball_data_final.csv")
+
+# ellipse plot of home run count by weight by handedness
+ellipseplot(bb[,c('hand', 'weight')], bb[,c('hand', 'hr')], col=c('cyan', 'yellow', 'magenta'), SUMMARY=fivenum); title("Home Run Count by Player Weight")
+
+```
+
 **Plot 5 - May 6, 2018**
 This visualization was a duplication exercise of a [plot in the NYTimes](https://www.nytimes.com/2018/05/04/business/economy/jobs-report.html). It was created using ggplot2.
+
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
 ### Daily Plot for May 6, 2018 ###

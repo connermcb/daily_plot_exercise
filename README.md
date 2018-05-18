@@ -10,9 +10,13 @@ This repo is a simple container for my practice plots. I work with *ggplot*, *ma
 The Plots
 ---------
 
-**Plot 5 - May 6, 2018** This visualization was a duplication exercise of a [plot in the NYTimes](https://www.nytimes.com/2018/05/04/business/economy/jobs-report.html). It was created using ggplot2.
+**Plot 6 - May 18, 2018** A simple visualization using the [`elliplot` package](https://github.com/cran/elliplot) by Shinichiro Tomizono.The `ellipseplot` function that produces a correlation chart and visualizes the effect of factors on the relationship between the two principal variables. This plot is to test the capabilities of the function and is not optimized in terms of formatting.
 
 <img src="README-unnamed-chunk-1-1.png" style="display: block; margin: auto;" />
+
+**Plot 5 - May 6, 2018** This visualization was a duplication exercise of a [plot in the NYTimes](https://www.nytimes.com/2018/05/04/business/economy/jobs-report.html). It was created using ggplot2.
+
+<img src="README-unnamed-chunk-2-1.png" style="display: block; margin: auto;" />
 
 **Plot 4 - May 5, 2018**
 
@@ -48,4 +52,4 @@ This plot is my rendition of a [beautiful line graph](https://www.nytimes.com/in
 
 The plot was built with ggplot2 in RStudio.The dataset is documented and available from the [National Snow & Ice Data Center](https://nsidc.org/data/search/#keywords=sea+ice/sortKeys=score,,desc/facetFilters=%257B%257D/pageNumber=1/itemsPerPage=25) with compressed csv files for download at a [linked FTP server](ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/).
 
-<img src="README-unnamed-chunk-7-1.png" style="display: block; margin: auto;" />
+<img src="README-unnamed-chunk-8-1.png" style="display: block; margin: auto;" />
