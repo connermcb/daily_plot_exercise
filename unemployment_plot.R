@@ -14,7 +14,7 @@ ggplot() +
         
         # time series line of unemployment rate
         geom_line(data=t3,
-                  aes(x=dt, y=value), 
+                  aes(x=dt, y=value), color="red", 
                   show.legend = F) + 
         
         # point with label for rate April 2018
@@ -42,12 +42,12 @@ ggplot() +
                    linetype = 2) +
         
         # axis formatting
-        scale_x_date(breaks = seq(as.Date("1945-01-01"),
-                                  as.Date("2020-01-01"),
-                                  "5 years"),
-                     labels = year(seq(as.Date("1945-01-01"),
-                                       as.Date("2020-01-01"),
-                                       "5 years"))) +
+        # scale_x_date(breaks = seq(as.Date("1945-01-01"),
+        #                           as.Date("2020-01-01"),
+        #                           "5 years"),
+        #              labels = year(seq(as.Date("1945-01-01"),
+        #                                as.Date("2020-01-01"),
+        #                                "5 years"))) +
         scale_y_continuous(limits = c(2, 11),
                            breaks = seq(2, 11, by = 2),
                            labels = as.double(seq(2, 11, by = 2))) +
