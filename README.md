@@ -10,13 +10,23 @@ This repo is a simple container for my practice plots. I work with *ggplot*, *ma
 The Plots
 ---------
 
-**Plot 6 - May 18, 2018** A simple visualization using the [`elliplot` package](https://github.com/cran/elliplot) by Shinichiro Tomizono.The `ellipseplot` function that produces a correlation chart and visualizes the effect of factors on the relationship between the two principal variables. This plot is to test the capabilities of the function and is not optimized in terms of formatting.
+**Plot 7 - August 15, 2018** Picked up Hilfiger's *Graphing Data with R*. To start the simple strip plot used for getting a quick look at the distribution and density of a variable.
 
 <img src="README-unnamed-chunk-1-1.png" style="display: block; margin: auto;" />
 
-**Plot 5 - May 6, 2018** This visualization was a duplication exercise of a [plot in the NYTimes](https://www.nytimes.com/2018/05/04/business/economy/jobs-report.html). It was created using ggplot2.
+**Plot 7 - June 6, 2018** Surveying the repertoire of basic Tableau charts. Practicing plots and here is the highlight chart with and without text.
+
+!["Highlight Table with Text"](highlight_table_text.png)
+
+!["Highlight Table with Text Removed"](highlight_table_no_text.png)
+
+**Plot 6 - May 18, 2018** A simple visualization using the [`elliplot` package](https://github.com/cran/elliplot) by Shinichiro Tomizono.The `ellipseplot` function that produces a correlation chart and visualizes the effect of factors on the relationship between the two principal variables. This plot is to test the capabilities of the function and is not optimized in terms of formatting.
 
 <img src="README-unnamed-chunk-2-1.png" style="display: block; margin: auto;" />
+
+**Plot 5 - May 6, 2018** This visualization was a duplication exercise of a [plot in the NYTimes](https://www.nytimes.com/2018/05/04/business/economy/jobs-report.html). It was created using ggplot2.
+
+<img src="README-unnamed-chunk-3-1.png" style="display: block; margin: auto;" />
 
 **Plot 4 - May 5, 2018**
 
@@ -52,4 +62,6 @@ This plot is my rendition of a [beautiful line graph](https://www.nytimes.com/in
 
 The plot was built with ggplot2 in RStudio.The dataset is documented and available from the [National Snow & Ice Data Center](https://nsidc.org/data/search/#keywords=sea+ice/sortKeys=score,,desc/facetFilters=%257B%257D/pageNumber=1/itemsPerPage=25) with compressed csv files for download at a [linked FTP server](ftp://sidads.colorado.edu/DATASETS/NOAA/G02135/).
 
-<img src="README-unnamed-chunk-8-1.png" style="display: block; margin: auto;" />
+    #> Warning: package 'bindrcpp' was built under R version 3.5.1
+
+<img src="README-unnamed-chunk-9-1.png" style="display: block; margin: auto;" />
