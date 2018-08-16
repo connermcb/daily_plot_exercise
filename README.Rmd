@@ -16,6 +16,25 @@ knitr::opts_chunk$set(echo = FALSE,
 This repo is a simple container for my practice plots. I work with _ggplot_, _matplotlib_, and _Tableau_ primarily to build attractive visualizations. The goal is to build a plot a day and add it to this container. As the title notes, I don't to adding a plot quite everyday...
 
 ## The Plots
+**Plot 8 - August 16, 2018**
+STill working with _Graphing Data with R_. Next chart is a dot plot that adds another dimension over the simple strip plot.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
+# get data
+attach(USArrests)
+
+# order data
+data2 = USArrests[order(USArrests$Murder),]
+
+# base plot
+dotchart(data2$Murder, cex = 0.5, pch = 19,
+         labels = row.names(data2), 
+         main = "Murder Arrest Rates by State, 1973",
+         xlab = "Arrests per 100,000 people",
+         col = c("darkblue", "dodgerblue"),
+         cex.lab = 1.5, cex.main = 2)
+```
+
 **Plot 7 - August 15, 2018**
 Picked up Hilfiger's _Graphing Data with R_. To start the simple strip plot used for getting a quick look at the distribution and density of a variable.
 
