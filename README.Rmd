@@ -16,8 +16,58 @@ knitr::opts_chunk$set(echo = FALSE,
 This repo is a simple container for my practice plots. I work with _ggplot_, _matplotlib_, and _Tableau_ primarily to build attractive visualizations. The goal is to build a plot a day and add it to this container. As the title notes, I don't to adding a plot quite everyday...
 
 ## The Plots
+**Plot 9 - August 17, 2018**
+Practicing with _Graphing Data with R_, a mainstay of single variable EDA, the boxplot.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
+# get data
+library(nlme)
+
+# test strip chart as means of looking at distribution
+par(mfrow=c(2,1))
+
+stripchart(MathAchieve$MathAch, method = "jitter",
+           main = "a. Math Ach Scores, pch = '19'",
+           pch = "19", xlab = "Scores")
+
+stripchart(MathAchieve$MathAch, method = "jitter",
+           main = "b. Math Ach Scores, pch = '.'",
+           pch = ".", xlab = "Scores")
+
+# compare above with boxplot
+par(mfrow=c(1,2))
+
+boxplot(MathAchieve$MathAch,
+        main = "Math Achievement Scores", ylab = "Scores")
+
+boxplot(MathAchieve$SES,
+        main = "SocioEconomic Status", ylab = "SES Score")
+
+# more detailed versions of plots
+par(mfrow=c(2,2))
+
+attach(MathAchieve)
+
+boxplot(MathAch ~ Minority, 
+        main = "a. Math Achievement by Minority", cex = 0.4)
+
+boxplot(MathAch ~ Minority*Sex,
+        main = "b. Math Achievement by Minority, Gender", cex = 0.4)
+
+boxplot(MathAch ~ Minority*Sex,
+        main = "c. Math by Minority, Gender (width=n)",
+        varwidth = TRUE, cex = 0.4) #sets width to size of subgroup box represents
+        
+boxplot(MathAch ~ Minority*Sex,
+        main = "d. Same as c. with Color by Minority",
+        varwidth = TRUE,
+        col = c("red", "blue"), cex = 0.4)
+
+```
+
+
 **Plot 8 - August 16, 2018**
-STill working with _Graphing Data with R_. Next chart is a dot plot that adds another dimension over the simple strip plot.
+Still working with _Graphing Data with R_. Next chart is a dot plot that adds another dimension over the simple strip plot.
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
 # get data
