@@ -10,29 +10,35 @@ This repo is a simple container for my practice plots. I work with *ggplot*, *ma
 The Plots
 ---------
 
-**Plot 10 - August 22, 2018** Study of histograms from *Graphing Data with R*.
+**Plot 11 - August 23, 2018** Practicg of density plot and cumulative distribution plot from *Graphing Data with R*.
 
 <img src="README-unnamed-chunk-1-1.png" style="display: block; margin: auto;" />
 
-![](README-unnamed-chunk-2-1.png)
+<img src="README-unnamed-chunk-2-1.png" style="display: block; margin: auto;" />
 
-![](README-unnamed-chunk-3-1.png)
+**Plot 10 - August 22, 2018** Study of histograms from *Graphing Data with R*.
 
-<img src="README-unnamed-chunk-4-1.png" style="display: block; margin: auto;" />
+<img src="README-unnamed-chunk-3-1.png" style="display: block; margin: auto;" />
 
-<img src="README-unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
+![](README-unnamed-chunk-4-1.png)
 
-**Plot 9 - August 17, 2018** Practicing with *Graphing Data with R*, a mainstay of single variable EDA, the boxplot.
+![](README-unnamed-chunk-5-1.png)
 
-<img src="README-unnamed-chunk-6-1.png" style="display: block; margin: auto;" /><img src="README-unnamed-chunk-6-2.png" style="display: block; margin: auto;" /><img src="README-unnamed-chunk-6-3.png" style="display: block; margin: auto;" />
-
-**Plot 8 - August 16, 2018** Still working with *Graphing Data with R*. Next chart is a dot plot that adds another dimension over the simple strip plot.
+<img src="README-unnamed-chunk-6-1.png" style="display: block; margin: auto;" />
 
 <img src="README-unnamed-chunk-7-1.png" style="display: block; margin: auto;" />
 
+**Plot 9 - August 17, 2018** Practicing with *Graphing Data with R*, a mainstay of single variable EDA, the boxplot.
+
+<img src="README-unnamed-chunk-8-1.png" style="display: block; margin: auto;" /><img src="README-unnamed-chunk-8-2.png" style="display: block; margin: auto;" /><img src="README-unnamed-chunk-8-3.png" style="display: block; margin: auto;" />
+
+**Plot 8 - August 16, 2018** Still working with *Graphing Data with R*. Next chart is a dot plot that adds another dimension over the simple strip plot.
+
+<img src="README-unnamed-chunk-9-1.png" style="display: block; margin: auto;" />
+
 **Plot 7 - August 15, 2018** Picked up Hilfiger's *Graphing Data with R*. To start the simple strip plot used for getting a quick look at the distribution and density of a variable.
 
-<img src="README-unnamed-chunk-8-1.png" style="display: block; margin: auto;" />
+<img src="README-unnamed-chunk-10-1.png" style="display: block; margin: auto;" />
 
 **Plot 7 - June 6, 2018** Surveying the repertoire of basic Tableau charts. Practicing plots and here is the highlight chart with and without text.
 
@@ -42,11 +48,11 @@ The Plots
 
 **Plot 6 - May 18, 2018** A simple visualization using the [`elliplot` package](https://github.com/cran/elliplot) by Shinichiro Tomizono.The `ellipseplot` function that produces a correlation chart and visualizes the effect of factors on the relationship between the two principal variables. This plot is to test the capabilities of the function and is not optimized in terms of formatting.
 
-<img src="README-unnamed-chunk-9-1.png" style="display: block; margin: auto;" />
+<img src="README-unnamed-chunk-11-1.png" style="display: block; margin: auto;" />
 
 **Plot 5 - May 6, 2018** This visualization was a duplication exercise of a [plot in the NYTimes](https://www.nytimes.com/2018/05/04/business/economy/jobs-report.html). It was created using ggplot2.
 
-<img src="README-unnamed-chunk-10-1.png" style="display: block; margin: auto;" />
+<img src="README-unnamed-chunk-12-1.png" style="display: block; margin: auto;" />
 
 **Plot 4 - May 5, 2018**
 
@@ -84,4 +90,4 @@ The plot was built with ggplot2 in RStudio.The dataset is documented and availab
 
     #> Warning: package 'bindrcpp' was built under R version 3.5.1
 
-<img src="README-unnamed-chunk-16-1.png" style="display: block; margin: auto;" />
+<img src="README-unnamed-chunk-18-1.png" style="display: block; margin: auto;" />

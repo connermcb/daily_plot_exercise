@@ -16,6 +16,63 @@ knitr::opts_chunk$set(echo = FALSE,
 This repo is a simple container for my practice plots. I work with _ggplot_, _matplotlib_, and _Tableau_ primarily to build attractive visualizations. The goal is to build a plot a day and add it to this container. As the title notes, I don't to adding a plot quite everyday...
 
 ## The Plots
+**Plot 11 - August 23, 2018**
+Practicg of density plot and cumulative distribution plot from _Graphing Data with R_.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
+# get data and set params
+library(multcomp)
+par(mfrow = c(2,2), cex.main = 0.9)
+
+## comparison of density plots, diff bandwidth, overlays
+# use density() to get plot points
+eq <-  density(sbp$sbp)
+plot(eq, xlim = c(100,200),
+     main = "Systolic Blood Pressure Density Plot",
+     lwd = 2)
+
+# overlay of density plot onto histogram
+hist(sbp$sbp, 
+     main="Histogram & Kernel Density Plot", col = "maroon",
+     las = 1, cex.axis = .8, freq = F)
+lines(eq, lwd = 2)
+
+# same but low bandwidth value
+eq2 <-  density(sbp$sbp, bw = 5)
+hist(sbp$sbp, 
+     main="Histogram & Kernel Density Plot", col = "maroon",
+     las = 1, cex.axis = .8, freq = F)
+lines(eq2, lwd = 2)
+
+# same but high bandwidth value
+eq3 <-  density(sbp$sbp, bw = 10)
+hist(sbp$sbp, 
+     main="Histogram & Kernel Density Plot", col = "maroon",
+     las = 1, cex.axis = .8, freq = F)
+lines(eq3, lwd = 2)
+```
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
+# get data
+load("emiss.rda")
+
+# calculate densities
+eu <- density(emissions$Europe)
+ea <- density(emissions$Eurasia)
+
+# set plot frame params
+par( bg="black", col.lab="white", col.axis="white", bty="l", 
+     fg="white", col.main="white")
+
+# plot overlapping densities
+plot(eu, xlim = c(6.9, 9), ylim = c(0, 2),
+     main = "Emissions Distributions - Europe & Eurasia",
+     col="goldenrod", lwd=2)
+lines(ea, lty = 2, lwd = 2, col = "cyan")
+```
+
+
+
 **Plot 10 - August 22, 2018**
 Study of histograms from _Graphing Data with R_.
 
