@@ -16,12 +16,48 @@ knitr::opts_chunk$set(echo = FALSE,
 This repo is a simple container for my practice plots. I work with _ggplot_, _matplotlib_, and _Tableau_ primarily to build attractive visualizations. The goal is to build a plot a day and add it to this container. As the title notes, I don't to adding a plot quite everyday...
 
 ## The Plots
+**Plot12 - August 26, 2018**
+Cumulative distribution plot from _Graphing Data with R_.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
+# get packages
+library(multcomp)
+library(Hmisc)
+
+# get random normal sample, n=10E5
+sample <- (rnorm(100000))
+
+# set up plot frame
+par(mfrow=c(2, 2), cex.main = 0.9, bg = "white")
+
+# plot kernel density of random sample
+plot(density(sample), col = "coral4",
+     main = "Density of Random Sample Normal Distribution")
+polygon(density(sample), col = "coral4")
+
+# plot cumulative density of sample
+plot(ecdf(sample), col = "turquoise", lwd = 2,
+     main = "Cumulative Density of Random Normal Sample")
+
+# plot of sbp data to show sparcity
+plot(ecdf(sbp$sbp), 
+     main = "Step Function of Cumulative Density of SBP data")
+
+# compare previous plot with same plot using Hmisc pkg
+Ecdf(sbp$sbp, col = "deepskyblue3",
+     main = "Hmisc Pkg Plot of Cumulative Density",
+     xlab = "Systolic Blood Pressure")
+grid(col = "gray70")
+```
+
+
 **Plot 11 - August 23, 2018**
-Practicg of density plot and cumulative distribution plot from _Graphing Data with R_.
+Practice of density plot and cumulative distribution plot from _Graphing Data with R_.
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
 # get data and set params
 library(multcomp)
+
 par(mfrow = c(2,2), cex.main = 0.9)
 
 ## comparison of density plots, diff bandwidth, overlays
