@@ -16,7 +16,63 @@ knitr::opts_chunk$set(echo = FALSE,
 This repo is a simple container for my practice plots. I work with _ggplot_, _matplotlib_, and _Tableau_ primarily to build attractive visualizations. The goal is to build a plot a day and add it to this container. As the title notes, I don't to adding a plot quite everyday...
 
 ## The Plots
-**Plot12 - August 26, 2018**
+**Plot 13 - August 28, 2018**
+Bar Plot exercise from _Graphing Data with R_.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
+# get data
+library(car)
+attach(Salaries)
+
+# counts for each faculty rank
+rankcount <- table(rank)
+
+# avg salary for each rank
+aver = aggregate(salary ~ rank, FUN = mean)
+
+# table of salaries by rank and sex
+rank2 <- table(rank, sex)
+
+
+# set plot frame params
+par(mfrow = c(2,2))
+
+barplot(rankcount, ylab = "Count", col = "skyblue",
+        main = "Faculty by Rank", sub = "a. Number in each rank")
+
+barplot(aver$salary, ylab = "Average Salary", names.arg = aver$rank, 
+        col="skyblue", main = "Faculty Salaries",
+        sub = "b. Average salary by rank")
+
+barplot(rank2, ylab = "Count", name.arg = c("Male","Female"),
+        main = "Faculty by Rank and Sex", 
+        col = c("skyblue", "skyblue4", "burlywood"),
+        sub = "c. Stacked Plot")
+        legend("topleft", c("Prof", "Assoc", "Asst"),
+        text.col = c("burlywood", "skyblue4", "skyblue"))
+
+barplot(rank2, ylab = "Count", name.arg = c("Male", "Female"),
+        main = "Faculty by Rank and Sex", 
+        col = c("skyblue", "skyblue4", "burlywood"),
+        sub = "c. Grouped Plot", beside = T)
+        legend("topleft", c("Prof", "Assoc", "Asst"),
+        text.col = c("burlywood", "skyblue4", "skyblue"))        
+```
+
+Spine Plot
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
+# get tabular data
+rank3 <- table(sex, rank)
+
+spineplot(rank3, col = c("skyblue", "skyblue4", "burlywood"),
+          main = "Faculty by Sex and Rank")
+
+```
+
+
+
+**Plot 12 - August 26, 2018**
 Cumulative distribution plot from _Graphing Data with R_.
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
