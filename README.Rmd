@@ -16,6 +16,62 @@ knitr::opts_chunk$set(echo = FALSE,
 This repo is a simple container for my practice plots. I work with _ggplot_, _matplotlib_, and _Tableau_ primarily to build attractive visualizations. The goal is to build a plot a day and add it to this container. As the title notes, I don't to adding a plot quite everyday...
 
 ## The Plots
+
+**Plot 14 - August 29, 2018**
+Study of bar plot orientation and spacing from _Graphing Data with R_.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
+# get data
+library(car)
+attach(Salaries)
+
+# calculate group means
+grp.sal <- aggregate(
+        salary ~ sex * rank, FUN = mean
+)
+
+# label vectors
+rankname <- c(" Asst", " ", " Assoc", " ", " Prof", " ")
+sexcol <- c("blue", "maroon")
+sexlab <- c("Female", "Male")
+
+# set plot frame params
+par(mfrow = c(2,2))
+
+# vertical bar chart with default bar spacing
+barplot(grp.sal$salary, names.arg = rankname, col = sexcol,
+        ylab = "Average Salary", main = "Avg Faculty Salaries",
+        sub = "a. Default spacing between bars")
+        legend("topleft", sexlab, text.col = sexcol, text.font = 2,
+               title = "Sex", title.col = "black", bty = "n", cex = 0.6)
+
+# set spacing between bars
+barplot(grp.sal$salary, names.arg = rankname, col = sexcol, space = 1.5,
+        ylab = "Average Salary", main = "Avg Faculty Salaries",
+        sub = "b. Spacing explicitly set, space=1.5")
+        legend("topleft", sexlab, text.col = sexcol, text.font = 2,
+               title = "Sex", title.col = "black", bty = "n", cex = 0.6)
+
+# use spacing to group bars by rank
+barplot(grp.sal$salary, names.arg = rankname, col = sexcol,
+        space = c(0, 0, 1, 0, 1, 0),
+        ylab = "Average Salary", main = "Avg Faculty Salaries",
+        sub = "c. Same rank together")
+        legend("topleft", sexlab, text.col = sexcol, text.font = 2,
+               title = "Sex", title.col = "black", bty = "n", cex = 0.6)
+
+# Horizontal bar plot using arg horiz=TRUE
+barplot(grp.sal$salary, names.arg = rankname, col = sexcol,
+        space = c(0, 0, 1, 0, 1, 0), horiz = T, 
+        ylab = "Average Salary", main = "Avg Faculty Salaries",
+        sub = "d. Horizontal bar plot", las = 1, cex.names = 0.9)
+        legend("bottomright", sexlab, text.col = sexcol, text.font = 2,
+               title = "Sex", title.col = "black", bty = "n", cex = 0.6)
+        
+detach(Salaries)
+```
+
+
 **Plot 13 - August 28, 2018**
 Bar Plot exercise from _Graphing Data with R_.
 
