@@ -17,6 +17,40 @@ This repo is a simple container for my practice plots. I work with _ggplot_, _ma
 
 ## The Plots
 
+
+
+**Plot 15 August 30, 2018**
+It's fallen out of vogue because it's difficult to interpret accurately, but the pie plot can still work well to show the proportional differences of a variable with two or three levels. A study of pie charts from _Graphing Data with R_.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
+# create vector of investment proportions
+allocate <- c(30, 25, 28, 10, 7)
+
+# labels, colores 
+sector = c("Stock", "For'n'", "Bonds", "Gold", "Cash")
+sectorcol = c("burlywood", "turquoise", "firebrick", "gold3", "green4")
+
+# set plotframe params
+par(mfrow = c(2,2))
+
+pie(allocate, labels = sector, radius = 1,
+    main = "Pie Chart - Default Colors")
+
+pie(allocate, labels = sector, radius = 1, 
+    col = sectorcol, main = "Pie Chart - Set Colors")
+
+library(plotrix)
+pie3D(allocate, labels = sector, col = sectorcol, explode = 0.05,
+      labelcex = 0.75, labelrad = 1.0, main = "Plotrix - 3D Pie Chart")
+
+barplot(allocate, names.arg = sector, col = sectorcol, 
+        main = "Barplot for Comparison")
+
+```
+
+
+
+
 **Plot 14 - August 29, 2018**
 Study of bar plot orientation and spacing from _Graphing Data with R_.
 
