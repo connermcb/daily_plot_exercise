@@ -17,6 +17,65 @@ This repo is a simple container for my practice plots. I work with _ggplot_, _ma
 
 ## The Plots
 
+**Plot 16 September 1, 2018**
+Fan plots show proportional differences much better than the similar pie chart, but are not widely known or used so they can be confusing unless some instruction is given on how to interpret them.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
+library(plotrix)
+
+# set portfolio allocations
+allocate <- c(30,25,28,10,7)
+
+# set labels
+sector = c("Stock", "For'n'", "Bonds", "Gold", "Cash")
+sectorcol = c("burlywood", "turquoise", "firebrick", "gold3", "green4")
+
+# plot 
+fan.plot(allocate, labels = sector, col = sectorcol, 
+         ticks = 30, main = "Fan Plot")
+```
+
+At first, it wasn't clear with this plot how the total arc-span of the full plot is determined. For example, the plot above from _Graphing Data with R_ happens to plot a aesthetically appealing angle, but when I tried plotting some data on some data of my own the results were different, specifically the total arc.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
+# create vector
+rvrslts <- c(216, 83, 22)
+ls <- c("Failed", "Passed", "Ungradable")
+
+# plot without span arg
+fan.plot(rvrslts, labels = ls, radius = 1,
+         main = "Fan Plot 2")
+
+
+```
+
+The arc of the fan is much wider and more difficult to take in at a glance, not to mention the title is pushed almost completely out of the plotframe. The argument that can be used to set the total arc is `max.span` and it takes radian values. For the same vector plotted above, I this time tried different values for `max.span`.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
+# create vector
+rvrslts <- c(216, 83, 22)
+ls <- c("Failed", "Passed", "Ungradable")
+
+# plot 
+fan.plot(rvrslts, labels = ls, max.span = 3*pi/4, radius = 1,
+         main = "Arc max.span = 3*pi/4")
+
+```
+
+I tried some other values for `max.span` but with mixed results. For example, using `pi` resulted in a chart of which half looked like it was missing.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
+# create vector
+rvrslts <- c(216, 83, 22)
+ls <- c("Failed", "Passed", "Ungradable")
+
+# plot  
+fan.plot(rvrslts, labels = ls, max.span = pi, radius = 1,
+         main = "Arc max.span = pi")
+
+```
+
+It seems like an arc of `2*pi/3 >= max.span > pi` is the best option. Values less than 2*pi/3 risk not leaving enough room for labels. 
 
 
 **Plot 15 August 30, 2018**

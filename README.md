@@ -10,55 +10,73 @@ This repo is a simple container for my practice plots. I work with *ggplot*, *ma
 The Plots
 ---------
 
-**Plot 15 August 30, 2018** It's fallen out of vogue because it's difficult to interpret accurately, but the pie plot can still work well to show the proportional differences of a variable with two or three levels. A study of pie charts from *Graphing Data with R*.
+**Plot 16 September 1, 2018** Fan plots show proportional differences much better than the similar pie chart, but are not widely known or used so they can be confusing unless some instruction is given on how to interpret them.
 
 <img src="README-unnamed-chunk-1-1.png" style="display: block; margin: auto;" />
 
-**Plot 14 - August 29, 2018** Study of bar plot orientation and spacing from *Graphing Data with R*.
+At first, it wasn't clear with this plot how the total arc-span of the full plot is determined. For example, the plot above from *Graphing Data with R* happens to plot a aesthetically appealing angle, but when I tried plotting some data on some data of my own the results were different, specifically the total arc.
 
 <img src="README-unnamed-chunk-2-1.png" style="display: block; margin: auto;" />
 
-**Plot 13 - August 28, 2018** Bar Plot exercise from *Graphing Data with R*.
+The arc of the fan is much wider and more difficult to take in at a glance, not to mention the title is pushed almost completely out of the plotframe. The argument that can be used to set the total arc is `max.span` and it takes radian values. For the same vector plotted above, I this time tried different values for `max.span`.
 
 <img src="README-unnamed-chunk-3-1.png" style="display: block; margin: auto;" />
 
-Spine Plot
+I tried some other values for `max.span` but with mixed results. For example, using `pi` resulted in a chart of which half looked like it was missing.
 
 <img src="README-unnamed-chunk-4-1.png" style="display: block; margin: auto;" />
 
-**Plot 12 - August 26, 2018** Cumulative distribution plot from *Graphing Data with R*.
+It seems like an arc of `2*pi/3 >= max.span > pi` is the best option. Values less than 2\*pi/3 risk not leaving enough room for labels.
+
+**Plot 15 August 30, 2018** It's fallen out of vogue because it's difficult to interpret accurately, but the pie plot can still work well to show the proportional differences of a variable with two or three levels. A study of pie charts from *Graphing Data with R*.
 
 <img src="README-unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
 
-**Plot 11 - August 23, 2018** Practice of density plot and cumulative distribution plot from *Graphing Data with R*.
+**Plot 14 - August 29, 2018** Study of bar plot orientation and spacing from *Graphing Data with R*.
 
 <img src="README-unnamed-chunk-6-1.png" style="display: block; margin: auto;" />
 
+**Plot 13 - August 28, 2018** Bar Plot exercise from *Graphing Data with R*.
+
 <img src="README-unnamed-chunk-7-1.png" style="display: block; margin: auto;" />
 
-**Plot 10 - August 22, 2018** Study of histograms from *Graphing Data with R*.
+Spine Plot
 
 <img src="README-unnamed-chunk-8-1.png" style="display: block; margin: auto;" />
 
-![](README-unnamed-chunk-9-1.png)
+**Plot 12 - August 26, 2018** Cumulative distribution plot from *Graphing Data with R*.
 
-![](README-unnamed-chunk-10-1.png)
+<img src="README-unnamed-chunk-9-1.png" style="display: block; margin: auto;" />
+
+**Plot 11 - August 23, 2018** Practice of density plot and cumulative distribution plot from *Graphing Data with R*.
+
+<img src="README-unnamed-chunk-10-1.png" style="display: block; margin: auto;" />
 
 <img src="README-unnamed-chunk-11-1.png" style="display: block; margin: auto;" />
 
+**Plot 10 - August 22, 2018** Study of histograms from *Graphing Data with R*.
+
 <img src="README-unnamed-chunk-12-1.png" style="display: block; margin: auto;" />
+
+![](README-unnamed-chunk-13-1.png)
+
+![](README-unnamed-chunk-14-1.png)
+
+<img src="README-unnamed-chunk-15-1.png" style="display: block; margin: auto;" />
+
+<img src="README-unnamed-chunk-16-1.png" style="display: block; margin: auto;" />
 
 **Plot 9 - August 17, 2018** Practicing with *Graphing Data with R*, a mainstay of single variable EDA, the boxplot.
 
-<img src="README-unnamed-chunk-13-1.png" style="display: block; margin: auto;" /><img src="README-unnamed-chunk-13-2.png" style="display: block; margin: auto;" /><img src="README-unnamed-chunk-13-3.png" style="display: block; margin: auto;" />
+<img src="README-unnamed-chunk-17-1.png" style="display: block; margin: auto;" /><img src="README-unnamed-chunk-17-2.png" style="display: block; margin: auto;" /><img src="README-unnamed-chunk-17-3.png" style="display: block; margin: auto;" />
 
 **Plot 8 - August 16, 2018** Still working with *Graphing Data with R*. Next chart is a dot plot that adds another dimension over the simple strip plot.
 
-<img src="README-unnamed-chunk-14-1.png" style="display: block; margin: auto;" />
+<img src="README-unnamed-chunk-18-1.png" style="display: block; margin: auto;" />
 
 **Plot 7 - August 15, 2018** Picked up Hilfiger's *Graphing Data with R*. To start the simple strip plot used for getting a quick look at the distribution and density of a variable.
 
-<img src="README-unnamed-chunk-15-1.png" style="display: block; margin: auto;" />
+<img src="README-unnamed-chunk-19-1.png" style="display: block; margin: auto;" />
 
 **Plot 7 - June 6, 2018** Surveying the repertoire of basic Tableau charts. Practicing plots and here is the highlight chart with and without text.
 
@@ -68,11 +86,11 @@ Spine Plot
 
 **Plot 6 - May 18, 2018** A simple visualization using the [`elliplot` package](https://github.com/cran/elliplot) by Shinichiro Tomizono.The `ellipseplot` function that produces a correlation chart and visualizes the effect of factors on the relationship between the two principal variables. This plot is to test the capabilities of the function and is not optimized in terms of formatting.
 
-<img src="README-unnamed-chunk-16-1.png" style="display: block; margin: auto;" />
+<img src="README-unnamed-chunk-20-1.png" style="display: block; margin: auto;" />
 
 **Plot 5 - May 6, 2018** This visualization was a duplication exercise of a [plot in the NYTimes](https://www.nytimes.com/2018/05/04/business/economy/jobs-report.html). It was created using ggplot2.
 
-<img src="README-unnamed-chunk-17-1.png" style="display: block; margin: auto;" />
+<img src="README-unnamed-chunk-21-1.png" style="display: block; margin: auto;" />
 
 **Plot 4 - May 5, 2018**
 
@@ -110,4 +128,4 @@ The plot was built with ggplot2 in RStudio.The dataset is documented and availab
 
     #> Warning: package 'bindrcpp' was built under R version 3.5.1
 
-<img src="README-unnamed-chunk-23-1.png" style="display: block; margin: auto;" />
+<img src="README-unnamed-chunk-27-1.png" style="display: block; margin: auto;" />
