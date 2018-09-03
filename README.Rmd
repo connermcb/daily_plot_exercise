@@ -17,6 +17,39 @@ This repo is a simple container for my practice plots. I work with _ggplot_, _ma
 
 ## The Plots
 
+**Plot 17 September 3, 2018**
+Rug plots are appended to other types of charts in order to show single variable distributions that might otherwise not be apparent in the principal chart. Rug plots are conceptually similar to strip plots.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
+# get pkgs and data
+library(multcomp)
+
+# set plot params
+par(mfrow=c(2,2))
+
+# plot with rug distribution along upper edge
+stripchart(mtcars$drat, 
+           main = "a. side=3", method = 'jitter',
+           pch = 20, col = 'sienna4')
+rug(mtcars$drat, side = 3)
+
+# boxplot with rug distribution along left edge
+boxplot(mtcars$drat, main = "b. side=2",
+        col = 'firebrick')
+rug(mtcars$drat, col = 'darkmagenta', side = 2)
+
+# histogram with run distribution along bottom edge
+hist(airquality$Ozone, main = "c. side=1",
+     col = 'cyan4')
+rug(airquality$Ozone, side = 1, col = 'cyan4')
+
+# boxplot with rug distribution along righ edge
+boxplot(sbp$sbp, main = "d. side=4", col = 'darkorange3')
+rug(sbp$sbp, side = 4, col = 'cornsilk4')
+
+```
+
+
 **Plot 16 September 1, 2018**
 Fan plots show proportional differences much better than the similar pie chart, but are not widely known or used so they can be confusing unless some instruction is given on how to interpret them.
 
