@@ -17,6 +17,64 @@ This repo is a simple container for my practice plots. I work with _ggplot_, _ma
 
 ## The Plots
 
+**Plot 18 September 5, 2018:** Next up is a study of scatter plots using _Graphing Data with R_. I think of scatter plots as akin to strip plots over two dimensions instead of just one. This is a versatile plot, not only allowing you to look at distributions or identify trends, but also to identify outliers and data points with potentially undue leverage. Depending on how the plot is implemented (i.e with labels or information contained in a hover tool), scatter plots can also be used to examine individual data points and compare their values to other points.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
+# get data and create subset
+attach(trees)
+trees2 = trees[1:2,]
+
+# set plot frame params
+par(mfrow=c(2,2), cex=0.7)
+
+# plot 1
+plot(trees2$Height, trees2$Girth,
+     xlim = c(60,85),
+     ylim = c(8, 10),
+     xlab = "Tree Height",
+     ylab = "Tree Girth",
+     main = "a. First Two Observations")
+
+# plot 1 annotations
+text(trees2[1,2], trees2[1,1], 
+     labels = paste("Height =", trees2[1,2], ", Girth =", trees2[1,1]),
+     xlim = c(61,80), 
+     ylim = c(8, 22),
+     adj = c(0.5, 1.5))
+
+text(trees2[2,2], trees2[2,1], 
+     labels = paste(trees2[2,2], ",", trees2[2,1]),
+     xlim = c(62,89), 
+     ylim = c(8, 22),
+     adj = c(0.5, -1.5))
+
+# Plot 2
+plot(Height, Girth, main = "b. Basic Scatter Plot")
+
+# Plot 3
+plot(Height, Girth, 
+     pch = 20,
+     col = "deepskyblue",
+     main = "c. Customized Plot")
+     grid(col = "gray70")
+     
+# Plot 4
+plot(Height, Girth, 
+     pch = 20,
+     col = "deepskyblue",
+     main = "d. Regression Line")
+     grid(col = "gray70")
+abline(lm(Girth ~ Height), 
+       lty = 1,lwd = 2,
+       col = "dodgerblue4")
+
+# clean up
+detach(trees)
+
+```
+
+
+
 **Plot 17 September 3, 2018**
 Rug plots are appended to other types of charts in order to show single variable distributions that might otherwise not be apparent in the principal chart. Rug plots are conceptually similar to strip plots.
 
