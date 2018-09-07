@@ -16,6 +16,77 @@ knitr::opts_chunk$set(echo = FALSE,
 This repo is a simple container for my practice plots. I work with _ggplot_, _matplotlib_, and _Tableau_ primarily to build attractive visualizations. The goal is to build a plot a day and add it to this container. As the title notes, I don't to adding a plot quite everyday...
 
 ## The Plots
+**Plot 19 September 7, 2018:** A look at line plots, again using _Graphing Data with R_.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
+# get data
+library(HistData)
+attach(Nightingale)
+
+# set plotframe params
+par(mfrow = c(2,2))
+
+# plot 1
+plot(Date, Disease, 
+     type = 'b',
+     pch = 20,
+     lty = 'solid',
+     main = "Line Chart of Disease Deaths")
+
+# plot 2
+plot(Date, Disease, 
+     type = 'l',
+     pch = 20,
+     lty = 'solid',
+     main = "Line Chart of Disease, Wounds, Other")
+lines(Date, Wounds,
+      lty = 'dashed',
+      col = 'red',
+      lwd = 2)
+lines(Date, Other,
+      lty = 'dotted',
+      col = 'navyblue',
+      lwd = 2)
+
+# Plot 3
+plot(Date, Disease,
+     type = 'h',
+     lty = 'solid',
+     lwd = 10, lend = 'butt',
+     main = "Change Disease to Histogram",
+     col = 'gray67')
+lines(Date, Wounds,
+      lty = 'solid',
+      col = 'red',
+      lwd = 2)
+lines(Date, Other,
+      lty = 'dotted',
+      col = 'navyblue',
+      lwd = 2)
+
+# plot 4
+plot(Date, Disease,
+     type = 'h',
+     lty = 'solid',
+     lwd = 20, col = 'gray67',
+     main = "Add legend, remove frame",
+     lend = 'butt', bty = 'l')
+lines(Date, Wounds,
+      lty = 'solid',
+      col = 'red',
+      lwd = 2)
+lines(Date, Other,
+      lty = 'dotted',
+      col = 'navyblue',
+      lwd = 2)
+legend("topleft",
+       c("Disease", "Wounds", "Other"),
+       text.col = c('gray40', 'red', 'navyblue'),
+       bty = 'n', cex = 0.7)
+
+detach(Nightingale)
+```
+
 
 **Plot 18 September 5, 2018:** Next up is a study of scatter plots using _Graphing Data with R_. I think of scatter plots as akin to strip plots over two dimensions instead of just one. This is a versatile plot, not only allowing you to look at distributions or identify trends, but also to identify outliers and data points with potentially undue leverage. Depending on how the plot is implemented (i.e with labels or information contained in a hover tool), scatter plots can also be used to examine individual data points and compare their values to other points.
 
