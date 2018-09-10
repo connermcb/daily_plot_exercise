@@ -16,6 +16,70 @@ knitr::opts_chunk$set(echo = FALSE,
 This repo is a simple container for my practice plots. I work with _ggplot_, _matplotlib_, and _Tableau_ primarily to build attractive visualizations. The goal is to build a plot a day and add it to this container. As the title notes, I don't to adding a plot quite everyday...
 
 ## The Plots
+**Plot 20 September 9, 20018:** Today is a single plot similar to the comibnation histogram and line plot in the last study. This time the default axis labels will be suppressed in favor of custom labels that give more information about independent and dependent variables.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
+# get data
+library(HistData)
+attach(Nightingale)
+
+# set size of plotframe
+par(mar= c(6,6,5,5), cex = 0.8) 
+
+# chart labels
+t = "British Army Deaths During Crimean War"
+x = "Date from April, 1854 to March, 1856"
+y = "Number of Deaths per Month"
+
+# data manipulation, calculated varible
+Army2 <- (Army)/20
+mon <- 1:24
+
+# plot histogram of disease deaths and basic format
+plot(mon, Disease, type = 'h',
+     lwd = 22, col = 'gray67',
+     lend = 'butt', main = t, 
+     col.main = 'maroon',
+     ylab = y, xlab = x,
+     cex.lab = 0.8,
+     las = 1,
+     cex.axis = 0.9,
+     bty = 'l', xaxt = 'n')
+# plot wounds line 
+lines(mon, Wounds, 
+      pch = 18, col = 'red',
+      lty = 'solid',
+      lwd = 2)
+# plot other line
+lines(mon, Other,
+     lty = 'dotted',
+     col = 'navyblue',
+     lwd = 3)
+# plot total army strength
+lines(mon, Army2, 
+     lty = 'dashed',
+     col = 'seagreen',
+     lwd = 2)
+
+# set horizontal axis
+axis(1, at=c(2, 6, 10, 14, 18, 22), 
+     labels = c("May 54", "Sep 54", "Jan 55", "May 55", "Sep 55", "Jan 56"))
+
+# set vertical axis
+axis(4, at = c(0, 500, 1000, 1500, 2000, 2500),
+     labels = c("0k", "10k", "20k", "30k", "40k", "50k"),
+     las = 1, tick = T, cex.lab = 0.6, col = 'seagreen4',
+     col.axis = 'seagreen4', ylab = "Troop Strength")
+
+legend('topleft', c("Disease", "Wounds", "Other","Troup Strength"),
+       text.col = c("gray40", "red", "navyblue", "seagreen4"), bty = 'n',
+       cex = 0.8)
+
+detach(Nightingale)
+```
+
+
+
 **Plot 19 September 7, 2018:** A look at line plots, again using _Graphing Data with R_.
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
