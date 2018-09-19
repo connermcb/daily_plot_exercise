@@ -16,7 +16,29 @@ knitr::opts_chunk$set(echo = FALSE,
 This repo is a simple container for my practice plots. I work with _ggplot_, _matplotlib_, and _Tableau_ primarily to build attractive visualizations. The goal is to build a plot a day and add it to this container. As the title notes, I don't to adding a plot quite everyday...
 
 ## The Plots
-**Plot 20 September 9, 20018:** Today is a single plot similar to the comibnation histogram and line plot in the last study. This time the default axis labels will be suppressed in favor of custom labels that give more information about independent and dependent variables.
+**Plot 21 September 18, 2018:** Today's plot uses the scatter plot function in the `car` package. 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
+# packages and data
+library(car)
+attach(trees)
+
+# plot
+scatterplot(Girth~Height, col = 'black',
+            regLine = list(method = lm, lty = 1, lwd = 1, col = 'green'),
+            smooth = list(smoother = loessLine,  
+                          lty.smooth = 2, lty.spread = 4, lwd.smooth = 2,
+                          lwd.spread = 1, col.smooth = 'red', col.spread = 'red'),
+            main = "Sample of Scatterplot (car package)")
+
+
+# clean up
+detach(trees)
+
+```
+
+
+**Plot 20 September 9, 2018:** Today is a single plot similar to the comibnation histogram and line plot in the last study. This time the default axis labels will be suppressed in favor of custom labels that give more information about independent and dependent variables.
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
 # get data
