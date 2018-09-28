@@ -17,6 +17,29 @@ This repo is a simple container for my practice plots. I work with _ggplot_, _ma
 
 ## The Plots
 
+
+**Plot 24 September 28, 2018:** Continuing with different charts that are well-suited to plotting large datasets and distinguising trends in densly plotted cooridinate spaces, today we'll look at a smooth scatter plot. The smooth scatter plot uses color saturation and intensity to show areas of high density. The smooth scatter plot shows granular detail better than the jitter or sunflower plots could.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
+# get pkgs and data
+library(car)
+attach(Vocab)
+
+# set plot params
+par(mai= c(0.5,1.5,0.5,1.5))
+
+# make plot
+smoothScatter(education, vocabulary, 
+              las = 1, # rotates numbers on axis
+              family = "HersheySerif",
+              main = "Smooth Scatter Plot", font = 3)
+
+# clean up
+detach(Vocab)
+
+```
+
+
 **Plot 23 September 23, 2018:** Scatter plots that use discrete data with a large number of points tend to overplot masking the true density across the plot space. One method available to deal with this is to apply a jitter function that offsets each point so that they aren't plotted directly over other points.
 
 The examples below are from _Graphing Data with R_.
