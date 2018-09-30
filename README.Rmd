@@ -16,6 +16,35 @@ knitr::opts_chunk$set(echo = FALSE,
 This repo is a simple container for my practice plots. I work with _ggplot_, _matplotlib_, and _Tableau_ primarily to build attractive visualizations. The goal is to build a plot a day and add it to this container. As the title notes, I don't to adding a plot quite everyday...
 
 ## The Plots
+**Plot 25 September 29, 2018:** The last of the charts featured in _Graphing Data with R_ designed to deal with dense data, the Hexbin Plot. As the name suggest, the datapoints are binned geometrically into hexagonally defined coordinate regions. A color gradient is used to fill in the hexagonal regions according to their density.In this and the smooth scatter plot, color gradients are used to encode amounts,intensities, or densities.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
+# get pkgs and data
+library(hexbin)
+library(car)
+attach(Vocab)
+
+# make plot
+plot(hexbin(education, vocabulary, xbins = 8),
+     main = "Hexbin Plot", xlab = "Education", ylab = "Vocabulary",
+     colramp = magent)
+
+# clean up
+detach(Vocab)
+```
+The above implementation uses the base plot function on the binned data. The `hexbin` package also includes its own plotter which is much more readily customizable. For comparison:
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
+# get pkgs and data
+library(hexbin)
+library(car)
+
+# make plot
+hexbinplot(vocabulary ~ education, data = Vocab, xbins = 10,
+     main = "Hexbin Plot", xlab = "Education", ylab = "Vocabulary",
+     colramp = magent, cex.labels = 0.8)
+
+```
 
 
 **Plot 24 September 28, 2018:** Continuing with different charts that are well-suited to plotting large datasets and distinguising trends in densly plotted cooridinate spaces, today we'll look at a smooth scatter plot. The smooth scatter plot uses color saturation and intensity to show areas of high density. The smooth scatter plot shows granular detail better than the jitter or sunflower plots could.
