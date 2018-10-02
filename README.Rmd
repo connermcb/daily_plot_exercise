@@ -16,6 +16,47 @@ knitr::opts_chunk$set(echo = FALSE,
 This repo is a simple container for my practice plots. I work with _ggplot_, _matplotlib_, and _Tableau_ primarily to build attractive visualizations. The goal is to build a plot a day and add it to this container. As the title notes, I don't to adding a plot quite everyday...
 
 ## The Plots
+**Plot 26 October 2, 2018:** Today we look at charts that can be used to compare the distributions of two vectors or arrays.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
+# get pkgs and data
+library(reshape2)
+attach(tips)
+ran <- sort(rnorm(100000))
+newtip <- (tip - mean(tip)) / sd(tip)
+qtip <- quantile(tip, seq(0, 1, .005))
+
+# set plot params
+par(mfrow=c(2,2))
+
+# make plot 1
+plot(density(tip), main = "Distribution Density Tips",
+     lwd = 2, col = "blue")
+
+
+# make plot 2
+plot(density(ran), main = "Density Tips vs NormalDist",
+     lwd = 1, xlim = c(-5, 8), ylim = c(0, 0.41))
+polygon(density(ran), col = "burlywood")
+lines(density(tip), col = "blue", lwd = 2)
+
+# make plot 3
+plot(density(ran), main = "Normalized Density Tips vs. NormalDist",
+     lwd = 1, xlim = c(-5, 8), ylim = c(0, 0.5))
+polygon(density(ran), col = "burlywood")
+lines(density(newtip), col = "blue", lwd = 2)
+
+# make plot 4
+qqplot(ran, qtip, main = "QQ-Plot",
+       xlim = c(-3,3), col = "skyblue2")
+qqline(qtip, col = "burlywood", lwd = 2)
+grid(lty = "dotted", col = "gray75")
+
+detach(tips)
+
+```
+
+
 **Plot 25 September 29, 2018:** The last of the charts featured in _Graphing Data with R_ designed to deal with dense data, the Hexbin Plot. As the name suggest, the datapoints are binned geometrically into hexagonally defined coordinate regions. A color gradient is used to fill in the hexagonal regions according to their density.In this and the smooth scatter plot, color gradients are used to encode amounts,intensities, or densities.
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
