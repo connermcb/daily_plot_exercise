@@ -16,6 +16,24 @@ knitr::opts_chunk$set(echo = FALSE,
 This repo is a simple container for my practice plots. I work with _ggplot_, _matplotlib_, and _Tableau_ primarily to build attractive visualizations. The goal is to build a plot a day and add it to this container. As the title notes, I don't to adding a plot quite everyday...
 
 ## The Plots
+**Plot 27 October 12, 2018:** Still working with _Graphing Data with R_, today we start with multivariable graphs. The pairs plot is good place to start exploring a dataset and get an overview that might reveal possible relationships among variables that warrent deeper analysis. 
+
+The pairs plot below looks at the relationships between all of the variables in a dataset that looks at the strictness of religious denominations and possible correlations to other social metrics.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
+# get pkgs and data
+library(Sleuth2)
+attach(ex1713)
+
+# pairs plot
+pairs(~ Distinct + Attend + NonChurch + StrongPct + AnnInc, 
+      pch = 16, col = 'deepskyblue')
+# clean up
+detach(ex1713)
+
+```
+
+
 **Plot 26 October 2, 2018:** Today we look at charts that can be used to compare the distributions of two vectors or arrays.
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
