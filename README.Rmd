@@ -16,6 +16,47 @@ knitr::opts_chunk$set(echo = FALSE,
 This repo is a simple container for my practice plots. I work with _ggplot_, _matplotlib_, and _Tableau_ primarily to build attractive visualizations. The goal is to build a plot a day and add it to this container. As the title notes, I don't to adding a plot quite everyday...
 
 ## The Plots
+**Plot 28 October 13, 2018:** 
+
+The scatterplotMatrix plot function in the `car` package offers more options like linear trend lines, smooth fit lines, and multiple options for univariate charts in the plot spaces along the grid diagonal. 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
+# get pkgs and data
+library(car)
+library(Sleuth2)
+attach(ex1713)
+
+# create plot
+scatterplotMatrix( ~ Distinct + Attend + NonChurch + StrongPct + AnnInc,
+                   col='black',
+                   smooth=list(smoother=loessLine, spread=F, lty.smooth=1,
+                               lwd.smooth=1, col.smooth='green'),
+                   regLine=list(method=lm, lty=1, lwd=1, col='red')) 
+        
+```
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
+# plot variations of scatterplotMatrix
+scatterplotMatrix( ~ Distinct + Attend + NonChurch + StrongPct + AnnInc,
+                   smooth = list(smoother=loessLine, spread=T, lty.smooth=1, 
+                                 lwd.smooth=1, lty.spread=3, lwd.spread=0.5,
+                                 col.smooth='green', col.spread='lightgreen'),
+                   diagonal = list(method="histogram", breaks="FD", col='green'),
+                   col = 'black',
+                   regLine = list(method=lm, lty=1, lwd=1, col='red'))
+
+
+
+# clean up 
+detach(ex1713)
+```
+
+```{r}
+
+```
+
+
+
 **Plot 27 October 12, 2018:** Still working with _Graphing Data with R_, today we start with multivariable graphs. The pairs plot is good place to start exploring a dataset and get an overview that might reveal possible relationships among variables that warrent deeper analysis. 
 
 The pairs plot below looks at the relationships between all of the variables in a dataset that looks at the strictness of religious denominations and possible correlations to other social metrics.
