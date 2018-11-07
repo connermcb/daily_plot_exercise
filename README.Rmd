@@ -16,6 +16,85 @@ knitr::opts_chunk$set(echo = FALSE,
 This repo is a simple container for my practice plots. I work with _ggplot_, _matplotlib_, and _Tableau_ primarily to build attractive visualizations. The goal is to build a plot a day and add it to this container. As the title notes, I don't to adding a plot quite everyday...
 
 ## The Plots
+**Plot 30 November 7, 2018:** Moving over into multi-variable plots of three or more dimensions, today taking a look at 3D scatter plots using the scatterplot3d package and function. Again, just exploring the lessons and charts in _Graphing Data with R_. The arguments for `scatterplot3d` can be either a matrix or individual vectors x, y, and z. Variable x is plotted on the horizontal axis, y on the diagonal axis, and z on the vertical axis. 
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
+# pkgs and data
+library(scatterplot3d)
+attach(trees)
+
+# set params
+par(mfrow = c(2,2),
+    cex.main = 0.9, las = 1)
+
+# plot1
+scatterplot3d(Height, Girth, Volume, 
+              main = "Basic 3D Scatter Plot")
+
+# plot2
+scatterplot3d(Height, Girth, Volume,
+              pch = 16, 
+              highlight.3d = TRUE,
+              cex.axis = 0.7,
+              main = "Highlighting & Axis Text Sizing")
+
+# plot3
+scatterplot3d(Height, Girth, Volume,
+              pch = 16,
+              type = "h",
+              highlight.3d = TRUE,
+              main = "Drop Lines Added")
+
+# plot4
+scatterplot3d(Height, Girth, Volume,
+              pch = 15, lwd = 6,
+              color = "cyan4", box = FALSE,
+              type = "h", cex.axis = 0.7,
+              main = "Bar Plot with Box Removed")
+
+# clean up
+detach(trees)
+
+```
+
+
+**Plot 29 October 23, 2018:**
+A look at `corrgram`, a plot related to the scatterplot matrix (see below) that show the linear correlation between two quantitative variables. Again today, working from _Graphing Data with R_.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
+# get data and pkgs
+library(Sleuth2)
+attach(ex1713)
+
+# create correlation matrix between selected variables from church dataset
+y = cor(ex1713[, 2:6])
+
+```
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
+# get pkgs
+library(corrplot)
+
+# set plot params
+par(mfrow = c(1,2))
+
+# make plots
+corrplot(y) # basic corrgram
+corrplot(y, method = "color")
+
+# set new plot frame
+par(mfrow = c(1,2))
+
+# make plots
+corrplot(y, method = "number")
+corrplot(y, method = "ellipse", type = "lower")
+
+# clean up
+detach(ex1713)
+```
+
+
+
 **Plot 28 October 13, 2018:** 
 
 The scatterplotMatrix plot function in the `car` package offers more options like linear trend lines, smooth fit lines, and multiple options for univariate charts in the plot spaces along the grid diagonal. 
