@@ -16,6 +16,31 @@ knitr::opts_chunk$set(echo = FALSE,
 This repo is a simple container for my practice plots. I work with _ggplot_, _matplotlib_, and _Tableau_ primarily to build attractive visualizations. The goal is to build a plot a day and add it to this container. As the title notes, I don't to adding a plot quite everyday...
 
 ## The Plots
+**Plot 31 November 15, 2018:** 3D Scatterplot with a prediction plane.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
+library(scatterplot3d)
+attach(trees)
+
+# set params
+par(mfrow = c(1, 1), las = 1)
+
+# plot
+sp3d <- scatterplot3d(Height, Girth, Volume, 
+                      pch = 16, highlight.3d = T, 
+                      type = "h",
+                      main = "3D ScatterPlot with Prediction Plane",
+                      cex.axis = 0.7,
+                      box = F)
+model <- lm(Volume ~ Height +  Girth)
+sp3d$plane3d(model)
+
+# clean up
+detach(trees)
+
+```
+
+
 **Plot 30 November 7, 2018:** Moving over into multi-variable plots of three or more dimensions, today taking a look at 3D scatter plots using the scatterplot3d package and function. Again, just exploring the lessons and charts in _Graphing Data with R_. The arguments for `scatterplot3d` can be either a matrix or individual vectors x, y, and z. Variable x is plotted on the horizontal axis, y on the diagonal axis, and z on the vertical axis. 
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
