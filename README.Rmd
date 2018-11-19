@@ -16,6 +16,46 @@ knitr::opts_chunk$set(echo = FALSE,
 This repo is a simple container for my practice plots. I work with _ggplot_, _matplotlib_, and _Tableau_ primarily to build attractive visualizations. The goal is to build a plot a day and add it to this container. As the title notes, I don't to adding a plot quite everyday...
 
 ## The Plots
+**Plot 33 November 18, 2018:** Bubble Plots encoding third variable point size.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
+# get data and pkgs
+library(DescTools)
+attach(trees)
+
+# plot
+PlotBubble(x = Height, y = Girth, area = Volume,
+           col = "Steelblue", border = "burlywood",
+           cex = 0.2, xlim = c(60, 95), ylim = c(5, 30),
+           xlab = "Height", ylab = "Girth", 
+           main = "Tree Volume (Circle Area) as Function of Height and Girth",
+           family = "HersheySerif", font.main = 2, col.main = "darkblue", 
+           col.axis = "darkblue", col.lab = "darkblue")
+
+# clean up
+detach(trees)
+
+
+```
+
+**Plot 32 November 17, 2018:** False Color Plots to encode a third dimension with color.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
+# get data and pkgs
+library(lattice)
+library(sm)
+data(coalash)
+attach(coalash)
+
+# plot
+levelplot(Percent ~ East * North)
+
+# clean up
+detach(coalash)
+
+```
+
+
 **Plot 31 November 15, 2018:** 3D Scatterplot with a prediction plane.
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
