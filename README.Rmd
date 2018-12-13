@@ -16,6 +16,67 @@ knitr::opts_chunk$set(echo = FALSE,
 This repo is a simple container for my practice plots. I work with _ggplot_, _matplotlib_, and _Tableau_ primarily to build attractive visualizations. The goal is to build a plot a day and add it to this container. As the title notes, I don't to adding a plot quite everyday...
 
 ## The Plots
+**Plot 35 - December 12, 2018:** Coplot for looking behind an apparent relationship for anly lurking variables.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
+# get pkgs and data
+library(car)
+attach(States)
+
+# plot
+plot(dollars, SATM,
+     pch = 16,
+     col = "maroon")
+grid(lty = "solid")
+
+```
+
+The chart makes it look like states that spend more on education see lower results on the SATM. Because this doesn't make logical sense, we'll try to slice or facet the data on a third variable.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
+# plot2
+coplot(SATM ~ dollars | percent,
+       pch = 16,
+       col = "royalblue",
+       overlap = .25,
+       number = 5,
+       bar.bg = c(num = "goldenrod2"))
+
+# clean up
+detach(States)
+```
+
+
+**Plot 34 - November 30, 2018:** Bubble plot of random sample of larger data set that would be too dense to interpret if all points were plotted. From _Graphing Data with R_:
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
+# get pkgs and data
+library(DescTools)
+library(Sleuth3)
+attach(ex0923)
+
+# take random sample of dataset
+set.seed(342)
+s <- sample(nrow(ex0923), 100)
+samp <- ex0923[s,]
+
+# plot
+detach(ex0923)
+attach(samp)
+PlotBubble( x = Educ, y = AFQT, area = Income2005/1000,
+            col = SetAlpha(as.numeric(Gender) + 3), border ="burlywood",
+            cex = 2, xlab = "Education", ylab = "AFQT test score",
+            xlim = c(5,20))
+title(main = "Income, proportional to circle area")
+legend("left", c("Female", "Male"),
+       text.col = c(1:2)+3, cex=0.9, bty = "n")
+
+# clean up
+detach(samp)
+
+```
+
+
 **Plot 33 November 18, 2018:** Bubble Plots encoding third variable point size.
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, fig.align='center'}
